@@ -1,368 +1,164 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cânticos e Orações de São Miguel</title>
-  <style>
-    :root {
-      --primary-color: #945821;
-      --secondary-color: #f2cba8;
-      --accent-color: #d4af37;
-      --text-dark: #333;
-      --text-light: #666;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, var(--secondary-color), #e6b89c);
-      color: var(--text-dark);
-      line-height: 1.6;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .banner {
-      background: linear-gradient(135deg, var(--primary-color), #8b4513);
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-      margin-bottom: 35px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .banner::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      z-index: 0;
-    }
-    
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    
-    .banner-icon {
-      font-size: 2.5rem;
-      color: #ffd700;
-    }
-    
-    .banner-text {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .main-title {
-      font-size: 2.2rem;
-      color: var(--primary-color);
-      margin-bottom: 25px;
-      text-align: center;
-      font-weight: bold;
-    }
-    
-    .subtitle {
-      font-size: 1.3rem;
-      color: var(--text-dark);
-      text-align: center;
-      margin-bottom: 40px;
-      font-style: italic;
-    }
-    
-    .videos-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-      margin-bottom: 50px;
-    }
-    
-    .video-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .video-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .video-thumbnail {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    
-    .video-info {
-      padding: 15px;
-    }
-    
-    .video-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin-bottom: 8px;
-    }
-    
-    .video-description {
-      font-size: 0.95rem;
-      color: var(--text-light);
-    }
-    
-    .upsell-section {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-top: 40px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .upsell-title {
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-    
-    .upsell-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 25px;
-    }
-    
-    .product-card {
-      background: linear-gradient(145deg, #f8f8f8, #ffffff);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      border-left: 5px solid var(--accent-color);
-    }
-    
-    .product-card:hover {
-      transform: translateX(5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-    
-    .product-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    
-    .product-icon {
-      font-size: 2rem;
-      color: var(--accent-color);
-      margin-right: 15px;
-    }
-    
-    .product-name {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-    
-    .product-price {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: var(--accent-color);
-      margin-bottom: 15px;
-    }
-    
-    .product-description {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--primary-color), #8b4513);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(148, 88, 33, 0.3);
-    }
-    
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(148, 88, 33, 0.4);
-    }
-    
-    .cta-button i {
-      margin-right: 8px;
-    }
-    
-    /* Responsividade adicional */
-    @media (max-width: 480px) {
-      .banner-text {
-        font-size: 1.5rem;
-      }
-      
-      .main-title {
-        font-size: 1.8rem;
-      }
-      
-      .subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .video-title {
-        font-size: 1rem;
-      }
-      
-      .product-name {
-        font-size: 1.2rem;
-      }
-      
-      .cta-button {
-        padding: 12px 24px;
-        font-size: 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <div class="banner">
-        <div class="banner-content">
-          <span class="banner-icon">✨</span>
-          <div class="banner-text">Cânticos e Orações de São Miguel</div>
-        </div>
-      </div>
-      
-      <h1 class="main-title">Conecte-se com seu Anjo da Guarda</h1>
-      <p class="subtitle">Ore todos os dias ouvindo o Cântico sagrado para se conectar com seu anjo da guarda e trazer Bençãos de abundância financeira e pessoal para sua vida!</p>
-    </div>
-    
-    <div class="videos-container" id="videos-container">
-      <!-- Vídeos serão carregados via JavaScript -->
-    </div>
-    
-    <div class="upsell-section">
-      <h2 class="upsell-title">Ofertas Especiais Para Amplificar Suas Bençãos</h2>
-      <div class="upsell-grid">
-        <div class="product-card">
-          <div class="product-header">
-            <span class="product-icon">💬</span>
-            <div class="product-name">Grupo de Orações Diário Exclusivo</div>
-          </div>
-          <div class="product-price">R$ 9,90</div>
-          <p class="product-description">Receba todas as manhãs orações, salmos e mensagens inspiradoras diretamente no seu WhatsApp, enviadas pelo Padre Humberto. Uma benção diária para fortalecer sua fé e atrair prosperidade.</p>
-          <a href="https://go.tribopay.com.br/xsgu2" class="cta-button">
-            <i>👉</i>
-            Quero Me Inscrever Agora
-          </a>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-header">
-            <span class="product-icon">🙏</span>
-            <div class="product-name">Quaresma do Padre Pio</div>
-          </div>
-          <p class="product-description">O grande Padre Pio preparou uma jornada espiritual especial para transformar sua vida. Durante 40 dias, receba lições, orações e reflexões que trarão paz interior, prosperidade e renovação espiritual.</p>
-          <a href="https://seuanjodaguarda.shop/quaresma-de-sao-padre-pio/" class="cta-button">
-            <i>▶️</i>
-            Quaresma de Padre Pio
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    const videos = [
-      {
-        titulo: 'Cântico de São Miguel Arcanjo',
-        url: 'FA0401913Z0',
-        tipo: 'youtube',
-        thumbnail: 'https://jpimg.com.br/uploads/2024/09/6-oracoes-e-simpatias-para-o-dia-do-arcanjo-sao-miguel.jpg'
-      },
-      {
-        titulo: 'Oração Poderosa de São Miguel',
-        url: 'CieDQUWfQvg',
-        tipo: 'youtube',
-        thumbnail: 'https://img.youtube.com/vi/CieDQUWfQvg/hqdefault.jpg'
-      }
-    ];
-    
-    const container = document.getElementById('videos-container');
-    videos.forEach(video => {
-      const card = document.createElement('div');
-      card.classList.add('video-card');
-      
-      card.innerHTML = `
-        <img src="${video.thumbnail}" alt="Thumbnail do vídeo ${video.titulo}" class="video-thumbnail">
-        <div class="video-info">
-          <h3 class="video-title">${video.titulo}</h3>
-          <p class="video-description">Clique para ouvir esta poderosa oração e receber as bênçãos de São Miguel Arcanjo.</p>
-        </div>
-      `;
-      
-      card.addEventListener('click', () => {
-        if (video.tipo === 'mp4') {
-          card.innerHTML = `
-            <video controls autoplay class="video-thumbnail">
-              <source src="${video.url}" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-info">
-              <h3 class="video-title">${video.titulo}</h3>
-              <p class="video-description">Aproveite esta poderosa oração gravada especialmente para você.</p>
-            </div>
-          `;
-        } else {
-          // Removemos o parâmetro &mute=1 para permitir áudio automático
-          card.innerHTML = `
-            <iframe src="https://www.youtube.com/embed/${video.url}?autoplay=1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen class="video-thumbnail"></iframe>
-            <div class="video-info">
-              <h3 class="video-title">${video.titulo}</h3>
-              <p class="video-description">Siga junto com esta oração e sinta a presença de São Miguel em sua vida.</p>
-            </div>
-          `;
-        }
-        card.style.cursor = 'default';
-      });
-      
-      container.appendChild(card);
-    });
-  </script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquila Ferox — Guilda Pax Dei</title>
 
-</body></html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Cinzel", serif;
+        background: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1350&q=80')
+            no-repeat center center fixed;
+        background-size: cover;
+        color: #f0f0f0;
+    }
+
+    .overlay {
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.55);
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+
+    header {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    header img {
+        width: 280px;
+        height: auto;
+        filter: drop-shadow(0 0 18px #000);
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 55px;
+        letter-spacing: 3px;
+        margin-top: 10px;
+        color: #ffd26a;
+        text-shadow: 0 0 18px #000;
+    }
+
+    section {
+        max-width: 900px;
+        margin: 50px auto;
+        background: rgba(15, 15, 15, 0.82);
+        border: 1px solid #444;
+        border-radius: 12px;
+        padding: 30px 35px;
+        box-shadow: 0 0 20px #000;
+    }
+
+    h2 {
+        color: #ffeb9a;
+        text-shadow: 0 0 10px #000;
+        border-left: 4px solid #ffeb9a;
+        padding-left: 12px;
+        margin-bottom: 18px;
+        font-size: 30px;
+    }
+
+    p, li {
+        line-height: 1.7;
+        font-size: 19px;
+    }
+
+    ul {
+        margin-left: 25px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 20px;
+        font-size: 14px;
+        color: #bbb;
+    }
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+<header>
+    <img src="https://github.com/pax-dei/aquilaferox/raw/main/logosemfundo.png" alt="Aquila Ferox Logo">
+    <h1>AQUILA FEROX</h1>
+</header>
+
+<section>
+    <h2>🦅 O Bando Está Chamando</h2>
+    <p>
+        A guerra está chegando, e a <strong>Aquila Ferox</strong> está reunindo aqueles que querem crescer,
+        lutar e evoluir juntos. Seja você um guerreiro de sangue quente do PVP ou um explorador dedicado do
+        PVE, há um lugar para você no nosso bando.
+    </p>
+</section>
+
+<section>
+    <h2>🔥 Por que entrar na Aquila Ferox?</h2>
+
+    <h3>⚔️ PVP com força e propósito</h3>
+    <p>
+        Não entramos em zona de guerra para passear. Nossos grupos são organizados, focados e preparados
+        pra bater de frente quando necessário.
+    </p>
+
+    <h3>🏰 PVE e DGS de alto nível</h3>
+    <p>
+        Aqui você encontra times ativos para dungeons high-level, sem cobrança de drop e com players
+        dispostos a ensinar, carregar e fortalecer quem quer evoluir.
+    </p>
+
+    <h3>🕊️ Aberta para todos os níveis</h3>
+    <p>
+        Do iniciante ao veterano, todos têm espaço.  
+        A gente ajuda, treina, orienta e cresce junto — porque um bando forte começa fortalecendo cada membro.
+    </p>
+
+    <h3>🎁 Sorteios semanais</h3>
+    <p>
+        Toda semana: armas Atuned nível 20 de todos os tipos para membros ativos.
+    </p>
+</section>
+
+<section>
+    <h2>🎯 Nosso foco agora</h2>
+    <p>
+        Preparação total para a guerra que está por vir: treinos, formações, disciplina e estratégia —
+        mas sem obrigar nada. Aqui você entra no ritmo no seu tempo.
+    </p>
+</section>
+
+<section>
+    <h2>💙 Nossa filosofia</h2>
+    <ul>
+        <li>Sem metas forçadas</li>
+        <li>Sem pressão absurda</li>
+        <li>Respeito e união</li>
+        <li>Evolução conjunta</li>
+        <li>Ambiente ativo, acolhedor e sem frescura</li>
+    </ul>
+</section>
+
+<section>
+    <h2>🦅 Junte-se à Aquila Ferox</h2>
+    <p>
+        Se quiser lutar, evoluir e fazer parte de um bando que não abandona ninguém, fale com nossos Officers
+        no Discord.
+    </p>
+    <p style="text-align:center; font-size:22px; margin-top:20px;">
+        <strong>Aquila Ferox — onde a garra encontra a honra.</strong>
+    </p>
+</section>
+
+<footer>
+    © 2025 Aquila Ferox — Guilda Pax Dei
+</footer>
+
+</div>
+</body>
+</html>
